@@ -1,1 +1,10 @@
 @import 'tailwindcss';
+
+h2 {
+    font-size: 1.6rem;
+}
+
+input {
+    border: 1px solid #bbb;
+    width: 6rem;
+}
