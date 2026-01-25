@@ -6,11 +6,11 @@
     const MINUTE_IN_SECONDS = 60
 
     function parseTime(time: string) {
-        const parts_low_to_high = time.split(":").reverse()
+        const parts_low_to_high = time.split(":").reverse().slice(0, 3)
         let current_factor = 1
         let total = 0
         for (let part of parts_low_to_high) {
-            total += part * current_factor
+            total += (part || 0) * current_factor
             current_factor *= 60
         }
         return total
@@ -86,7 +86,10 @@ time
 pace miles
 <input bind:value={
     () => formatSecondsString(pace1miles),
-    (v) => time1seconds = parseTime(v) * distance1miles
+    (v) => {
+        console.log(v)
+        time1seconds = parseTime(v) * distance1miles
+    }
 } />
 
 pace km
