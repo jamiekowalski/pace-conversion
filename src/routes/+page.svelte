@@ -1,5 +1,6 @@
 <script lang="ts">
     import Input from "../lib/input.svelte"
+    import TimeInputGPT from "$lib/TimeInputGPT.svelte";
 
     const KM_PER_MILE = 1.60934
     const HOUR_IN_SECONDS = 60 * 60
@@ -10,7 +11,7 @@
         let current_factor = 1
         let total = 0
         for (let part of parts_low_to_high) {
-            total += (part || 0) * current_factor
+            total += (parseInt(part, 10) || 0) * current_factor
             current_factor *= 60
         }
         return total
@@ -78,24 +79,24 @@ km
 } />
 
 time
-<input bind:value={
-    () => formatSecondsString(time1seconds),
-    (v) => time1seconds = parseTime(v)
-} />
+<TimeInputGPT bind:value={
+    () => time1seconds,
+    (v) => time1seconds = v
+} showHours />
 
 pace miles
-<input bind:value={
-    () => formatSecondsString(pace1miles),
+<TimeInputGPT bind:value={
+    () => pace1miles,
     (v) => {
         console.log(v)
-        time1seconds = parseTime(v) * distance1miles
+        time1seconds = v * distance1miles
     }
 } />
 
 pace km
-<input bind:value={
-    () => formatSecondsString(pace1km),
-    (v) => time1seconds = parseTime(v) * distance1km
+<TimeInputGPT bind:value={
+    () => pace1km,
+    (v) => time1seconds = v * distance1km
 } />
 
 <h2>Race 2</h2>
@@ -113,19 +114,19 @@ km
 } />
 
 time
-<input bind:value={
-    () => formatSecondsString(time2seconds),
-    (v) => time1seconds = deriveTime(parseTime(v), distance2miles, distance1miles)
-} />
+<TimeInputGPT bind:value={
+    () => time2seconds,
+    (v) => time1seconds = deriveTime(v, distance2miles, distance1miles)
+} showHours />
 
 pace miles
-<input bind:value={
-    () => formatSecondsString(pace2miles),
-    (v) => time1seconds = deriveTime(parseTime(v) * distance2miles, distance2miles, distance1miles)
+<TimeInputGPT bind:value={
+    () => pace2miles,
+    (v) => time1seconds = deriveTime(v * distance2miles, distance2miles, distance1miles)
 } />
 
 pace km
-<input bind:value={
-    () => formatSecondsString(pace2km),
-    (v) => time1seconds = deriveTime(parseTime(v) * distance2km, distance2miles, distance1miles)
+<TimeInputGPT bind:value={
+    () => pace2km,
+    (v) => time1seconds = deriveTime(v * distance2km, distance2miles, distance1miles)
 } />
