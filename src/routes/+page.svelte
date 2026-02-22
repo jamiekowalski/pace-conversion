@@ -1,4 +1,5 @@
 <script lang="ts">
+	import InputNormalizeOnBlur from "$lib/InputNormalizeOnBlur.svelte";
     import TimeInput from "$lib/TimeInput.svelte";
 
     const KM_PER_MILE = 1.60934
@@ -11,14 +12,9 @@
         return input_time * (output_miles / input_miles)**(1.06)
     }
 
-    // function reverseDeriveTime(t1_seconds: number, d1_miles: number, d2_miles: number) {
-    //     // given d1_miles, d2_miles, and t2_seconds
-    //     return t1_seconds * (d2_miles / d1_miles)**(1.06)
-    // }
-
     // only three values are given
     let distance1miles = $state(10)
-    let time1seconds = $state(10)
+    let time1seconds = $state(60 * 60)
     let distance2miles = $state(10)
 
     // everything else is always derived
@@ -40,16 +36,20 @@
 <h2>Race 1</h2>
 
 miles
-<input bind:value={
-    () => formatDistance(distance1miles),
-    (v) => distance1miles = v
-} />
+<InputNormalizeOnBlur
+  bind:value={distance1miles}
+  toString={formatDistance}
+  fromString={parseFloat}
+/>
 
 km
-<input bind:value={
-    () => formatDistance(distance1km),
-    (v) => distance1miles = v / KM_PER_MILE
-} />
+<InputNormalizeOnBlur bind:value={
+  () => distance1km,
+  (v) => distance1miles = v / KM_PER_MILE
+  }
+  toString={formatDistance}
+  fromString={parseFloat}
+/>
 
 time
 <TimeInput bind:value={
@@ -75,16 +75,19 @@ pace km
 <h2>Race 2</h2>
 
 miles
-<input bind:value={
-    () => formatDistance(distance2miles),
-    (v) => distance2miles = v
-} />
+<InputNormalizeOnBlur bind:value={distance2miles}
+  toString={formatDistance}
+  fromString={parseFloat}
+/>
 
 km
-<input bind:value={
-    () => formatDistance(distance2km),
+<InputNormalizeOnBlur bind:value={
+    () => distance2km,
     (v) => distance2miles = v / KM_PER_MILE
-} />
+  }
+  toString={formatDistance}
+  fromString={parseFloat}
+/>
 
 time
 <TimeInput bind:value={

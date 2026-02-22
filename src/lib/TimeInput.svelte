@@ -1,8 +1,8 @@
 <script lang="ts">
+	import InputNormalizeOnBlur from "./InputNormalizeOnBlur.svelte";
+
   const HOUR_IN_SECONDS = 60 * 60
   const MINUTE_IN_SECONDS = 60
-
-  let isFocused = $state();
 
 	let {
     // number of seconds
@@ -10,38 +10,18 @@
     withHours = false
   } = $props();
 
-  let textValue = $state(formatSecondsToString(value))
+  function splitSeconds(seconds: number) {
+    // seconds to [hours, minutes, seconds]
+    const hours = Math.floor(seconds / HOUR_IN_SECONDS)
+    let remaining_seconds = seconds - hours * HOUR_IN_SECONDS
+    const minutes = Math.floor(remaining_seconds / MINUTE_IN_SECONDS)
+    remaining_seconds = Math.round(remaining_seconds - minutes * MINUTE_IN_SECONDS)
 
-  $effect(() => {
-    if (!isFocused) {
-  		textValue = formatSecondsToString(value)
-    }
-	});
-
-  function formatString(t: string) {
-    let expectedLength = withHours ? 3 : 2
-    let segments = t.split(":").map(s => s.padStart(2, "0"))
-    if (segments.length == expectedLength - 2) {
-      segments = ["00"].concat(segments).concat(["00"])
-    } else if (segments.length == expectedLength - 1) {
-      segments = ["00"].concat(segments)
-    } else if (segments.length > expectedLength) {
-      segments = segments.slice(-expectedLength)
-    }
-    return segments.join(":")
+    return [hours, minutes, remaining_seconds]
   }
 
-  function formatSeconds(seconds: number) {
-      const hours = Math.floor(seconds / HOUR_IN_SECONDS)
-      let remaining_seconds = seconds - hours * HOUR_IN_SECONDS
-      const minutes = Math.floor(remaining_seconds / MINUTE_IN_SECONDS)
-      remaining_seconds = Math.round(remaining_seconds - minutes * MINUTE_IN_SECONDS)
-
-      return [hours, minutes, remaining_seconds]
-  }
-
-  function formatSecondsToString(seconds: number) {
-    return formatString(formatSeconds(seconds).join(":"))
+  function secondsToString(seconds: number) {
+    return splitSeconds(seconds).map(s => `${s}`.padStart(2, "0")).join(":")
   }
 
   function parseTime(time: string) {
@@ -60,14 +40,8 @@
   }
 </script>
 
-<input
-	bind:value={
-    () => textValue,
-    (v) => {
-      textValue = v
-      value = parseTime(textValue)
-    }
-  }
-	onfocus={() => { isFocused = true }}
-	onblur={() => { isFocused = false }}
+<InputNormalizeOnBlur
+	bind:value={value}
+  fromString={parseTime}
+  toString={secondsToString}
 />
