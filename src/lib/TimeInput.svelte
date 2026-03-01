@@ -18,7 +18,7 @@
     const minutes = Math.floor(remaining_seconds / MINUTE_IN_SECONDS)
     remaining_seconds = Math.round(remaining_seconds - minutes * MINUTE_IN_SECONDS)
 
-    return [hours, minutes, remaining_seconds]
+    return withHours ? [hours, minutes, remaining_seconds] : [minutes, remaining_seconds]
   }
 
   function secondsToString(seconds: number) {

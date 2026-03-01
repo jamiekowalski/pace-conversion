@@ -92,7 +92,6 @@ bind:value={distance2miles}
   fromString={parseFloat}
 />
 
-km
 <InputNormalizeOnBlur
 name="km"
 bind:value={
@@ -147,7 +146,9 @@ form {
 }
 
 h2 {
-  font-size: 2rem;
+  font-size: 2.5rem;
+  margin-bottom: 1.6rem;
+  border-bottom: 1px solid #bbb;
 }
 
 .segment {

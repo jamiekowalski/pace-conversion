@@ -37,7 +37,8 @@
   input {
     border: 1px solid #ccc;
     padding: 0rem 0.3rem;
-    width: 10rem;
+    width: 8rem;
+    border-radius: 0.6rem;
   }
   label {
     font-weight: bold;
