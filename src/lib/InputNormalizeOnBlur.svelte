@@ -5,6 +5,7 @@
     value = $bindable(),
     fromString,
     toString,
+    name,
   } = $props();
 
   let textValue = $state(toString(value))
@@ -16,14 +17,30 @@
 	});
 </script>
 
-<input
-	bind:value={
-    () => textValue,
-    (v) => {
-      textValue = v
-      value = fromString(textValue)
+<span>
+  <label for={name}>{name}</label>
+  <input
+    id={name}
+    bind:value={
+      () => textValue,
+      (v) => {
+        textValue = v
+        value = fromString(textValue)
+      }
     }
+    onfocus={() => { isFocused = true }}
+    onblur={() => { isFocused = false }}
+  />
+</span>
+
+<style>
+  input {
+    border: 1px solid #ccc;
+    padding: 0rem 0.3rem;
+    width: 10rem;
   }
-	onfocus={() => { isFocused = true }}
-	onblur={() => { isFocused = false }}
-/>
+  label {
+    font-weight: bold;
+    padding-right: 0.2rem;
+  }
+</style>

@@ -29,32 +29,42 @@
 
 </script>
 
-<h2>Race 1</h2>
+<form class="race1">
+<h2>Actual race</h2>
 
-miles
+<div class="segment">
+
 <InputNormalizeOnBlur
+  name="miles"
   bind:value={distance1miles}
   toString={formatDistance}
   fromString={parseFloat}
 />
 
-km
-<InputNormalizeOnBlur bind:value={
+<InputNormalizeOnBlur
+  name="km"
+  bind:value={
   () => distance1km,
   (v) => distance1miles = v / KM_PER_MILE
   }
   toString={formatDistance}
   fromString={parseFloat}
 />
+</div>
 
-time
-<TimeInput bind:value={
+<div class="segment">
+<TimeInput
+name="time"
+bind:value={
     () => time1seconds,
     (v) => time1seconds = v
 } withHours />
+</div>
 
-pace miles
-<TimeInput bind:value={
+<div class="segment">
+<TimeInput
+name="pace miles"
+bind:value={
     () => pace1miles,
     (v) => {
         console.log(v)
@@ -62,43 +72,87 @@ pace miles
     }
 } />
 
-pace km
-<TimeInput bind:value={
+<TimeInput
+name="pace km"
+bind:value={
     () => pace1km,
     (v) => time1seconds = v * distance1km
 } />
+</div>
+</form>
 
-<h2>Race 2</h2>
+<form class="race2">
+<h2>Predicted race</h2>
 
-miles
-<InputNormalizeOnBlur bind:value={distance2miles}
+<div class="segment">
+<InputNormalizeOnBlur
+name="miles"
+bind:value={distance2miles}
   toString={formatDistance}
   fromString={parseFloat}
 />
 
 km
-<InputNormalizeOnBlur bind:value={
+<InputNormalizeOnBlur
+name="km"
+bind:value={
     () => distance2km,
     (v) => distance2miles = v / KM_PER_MILE
   }
   toString={formatDistance}
   fromString={parseFloat}
 />
+</div>
 
-time
-<TimeInput bind:value={
+<div class="segment">
+<TimeInput
+name="time"
+bind:value={
     () => time2seconds,
     (v) => time1seconds = deriveTime(v, distance2miles, distance1miles)
 } withHours />
+</div>
 
-pace miles
-<TimeInput bind:value={
+<div class="segment">
+<TimeInput
+name="pace miles"
+bind:value={
     () => pace2miles,
     (v) => time1seconds = deriveTime(v * distance2miles, distance2miles, distance1miles)
 } />
 
-pace km
-<TimeInput bind:value={
+<TimeInput
+name="pace km"
+bind:value={
     () => pace2km,
     (v) => time1seconds = deriveTime(v * distance2km, distance2miles, distance1miles)
 } />
+</div>
+</form>
+
+<style>
+form {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 1.6rem;
+  padding: 2rem;
+}
+
+.race1 {
+  background-color: #f3f3f3;
+}
+
+.race2 {
+  background-color: #333;
+  color: #f3f3f3;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+.segment {
+  display: flex;
+  gap: 0.8rem;
+  margin: 0 0 0.5rem;
+}
+</style>

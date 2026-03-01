@@ -7,7 +7,8 @@
 	let {
     // number of seconds
     value = $bindable(),
-    withHours = false
+    withHours = false,
+    name
   } = $props();
 
   function splitSeconds(seconds: number) {
@@ -41,6 +42,7 @@
 </script>
 
 <InputNormalizeOnBlur
+  name={name}
 	bind:value={value}
   fromString={parseTime}
   toString={secondsToString}
