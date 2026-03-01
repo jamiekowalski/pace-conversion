@@ -6,6 +6,7 @@
     fromString,
     toString,
     name,
+    disabled = false,
   } = $props();
 
   let textValue = $state(toString(value))
@@ -30,6 +31,7 @@
     }
     onfocus={() => { isFocused = true }}
     onblur={() => { isFocused = false }}
+    disabled={disabled}
   />
 </span>
 
@@ -40,6 +42,11 @@
     width: 8rem;
     border-radius: 0.6rem;
   }
+
+  input:disabled {
+    border-color: #777;
+  }
+
   label {
     font-weight: bold;
     padding-right: 0.2rem;

@@ -13,9 +13,9 @@
     }
 
     // only three values are given
-    let distance1miles = $state(10)
+    let distance1miles = $state(10 / KM_PER_MILE)
     let time1seconds = $state(60 * 60)
-    let distance2miles = $state(10)
+    let distance2miles = $state(10 / KM_PER_MILE)
 
     // everything else is always derived
     let distance1km = $derived(distance1miles && (distance1miles * KM_PER_MILE))
@@ -109,7 +109,7 @@ name="time"
 bind:value={
     () => time2seconds,
     (v) => time1seconds = deriveTime(v, distance2miles, distance1miles)
-} withHours />
+} withHours disabled />
 </div>
 
 <div class="segment">
@@ -118,14 +118,14 @@ name="pace miles"
 bind:value={
     () => pace2miles,
     (v) => time1seconds = deriveTime(v * distance2miles, distance2miles, distance1miles)
-} />
+} disabled />
 
 <TimeInput
 name="pace km"
 bind:value={
     () => pace2km,
     (v) => time1seconds = deriveTime(v * distance2km, distance2miles, distance1miles)
-} />
+} disabled />
 </div>
 </form>
 

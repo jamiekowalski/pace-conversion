@@ -8,7 +8,8 @@
     // number of seconds
     value = $bindable(),
     withHours = false,
-    name
+    name,
+    disabled = false,
   } = $props();
 
   function splitSeconds(seconds: number) {
@@ -46,4 +47,5 @@
 	bind:value={value}
   fromString={parseTime}
   toString={secondsToString}
+  disabled={disabled}
 />
