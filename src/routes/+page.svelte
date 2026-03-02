@@ -162,9 +162,9 @@
 
 <div class="footer">
   Show pace in <span class="unit-selection"
-    ><span class={paceUnits == MIN_MI ? 'selected' : ''} onclick={(paceUnits = MIN_MI)}>min/mi</span
+    ><span class={paceUnits == MIN_MI ? 'selected' : ''} onclick={(paceUnits = MIN_MI)}>{MIN_MI}</span
     >
-    <span class={paceUnits == MIN_KM ? 'selected' : ''} onclick={(paceUnits = MIN_KM)}>km/mi</span
+    <span class={paceUnits == MIN_KM ? 'selected' : ''} onclick={(paceUnits = MIN_KM)}>{MIN_KM}</span
     ></span
   >
 </div>
