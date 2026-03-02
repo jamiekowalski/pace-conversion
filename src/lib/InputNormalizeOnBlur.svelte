@@ -1,22 +1,15 @@
 <script lang="ts">
   let isFocused = $state();
 
-	let {
-    value = $bindable(),
-    fromString,
-    toString,
-    name,
-    disabled = false,
-    unit = null,
-  } = $props();
+  let { value = $bindable(), fromString, toString, name, disabled = false, unit = null } = $props();
 
-  let textValue = $state(toString(value))
+  let textValue = $state(toString(value));
 
   $effect(() => {
     if (!isFocused) {
-  		textValue = toString(value)
+      textValue = toString(value);
     }
-	});
+  });
 </script>
 
 <span class="container">
@@ -25,13 +18,17 @@
     bind:value={
       () => textValue,
       (v) => {
-        textValue = v
-        value = fromString(textValue)
+        textValue = v;
+        value = fromString(textValue);
       }
     }
-    onfocus={() => { isFocused = true }}
-    onblur={() => { isFocused = false }}
-    disabled={disabled}
+    onfocus={() => {
+      isFocused = true;
+    }}
+    onblur={() => {
+      isFocused = false;
+    }}
+    {disabled}
   />
   {#if unit}
     <span class="unit">{unit}</span>
@@ -44,7 +41,8 @@
     display: inline-block;
   }
 
-  .container, input {
+  .container,
+  input {
     width: 10rem;
   }
 

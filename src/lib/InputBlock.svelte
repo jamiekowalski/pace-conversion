@@ -1,20 +1,17 @@
 <script lang="ts">
-    const {
-        name,
-        children
-    } = $props()
+  const { name, children } = $props();
 </script>
 
 <div class="input-block">
-    <div class="name">{name}</div>
-    <div>{@render children()}</div>
+  <div class="name">{name}</div>
+  <div>{@render children()}</div>
 </div>
 
 <style>
-.input-block {
+  .input-block {
     margin: 0 0 0.6rem;
-}
-.name {
+  }
+  .name {
     font-weight: bold;
-}
+  }
 </style>
