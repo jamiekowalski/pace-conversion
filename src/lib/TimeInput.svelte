@@ -11,6 +11,7 @@
     name,
     unit = null,
     disabled = false,
+    width = undefined,
   } = $props();
 
   function splitSeconds(seconds: number) {
@@ -53,4 +54,5 @@
   toString={secondsToString}
   {disabled}
   {unit}
+  {width}
 />

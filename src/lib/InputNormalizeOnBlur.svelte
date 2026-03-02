@@ -1,7 +1,15 @@
 <script lang="ts">
   let isFocused = $state();
 
-  let { value = $bindable(), fromString, toString, name, disabled = false, unit = null } = $props();
+  let {
+    value = $bindable(),
+    fromString,
+    toString,
+    name,
+    disabled = false,
+    unit = null,
+    width = '10rem',
+  } = $props();
 
   let textValue = $state(toString(value));
 
@@ -12,7 +20,7 @@
   });
 </script>
 
-<span class="container">
+<span class="container" style:width>
   <input
     id={name}
     bind:value={
@@ -29,6 +37,7 @@
       isFocused = false;
     }}
     {disabled}
+    style:width
   />
   {#if unit}
     <span class="unit">{unit}</span>
@@ -40,11 +49,6 @@
     position: relative;
     display: inline-block;
     margin-right: 0.6rem;
-  }
-
-  .container,
-  input {
-    width: 10rem;
   }
 
   input {

@@ -60,6 +60,7 @@
       toString={formatDistance}
       fromString={parseFloat}
       unit="mi"
+      width="7rem"
     />
 
     <InputNormalizeOnBlur
@@ -68,6 +69,7 @@
       toString={formatDistance}
       fromString={parseFloat}
       unit="km"
+      width="7rem"
     />
   </InputBlock>
 
@@ -112,6 +114,7 @@
       toString={formatDistance}
       fromString={parseFloat}
       unit="mi"
+      width="7rem"
     />
 
     <InputNormalizeOnBlur
@@ -120,6 +123,7 @@
       toString={formatDistance}
       fromString={parseFloat}
       unit="km"
+      width="7rem"
     />
   </InputBlock>
 
