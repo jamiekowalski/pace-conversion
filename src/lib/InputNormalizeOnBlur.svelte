@@ -39,6 +39,7 @@
   .container {
     position: relative;
     display: inline-block;
+    margin-right: 0.6rem;
   }
 
   .container,

@@ -51,7 +51,7 @@
 </script>
 
 <form class="race1">
-  <h2>Actual race</h2>
+  <h2>Race A</h2>
 
   <InputBlock name="distance">
     <InputNormalizeOnBlur
@@ -103,7 +103,7 @@
 </form>
 
 <form class="race2">
-  <h2>Predicted race</h2>
+  <h2>Race B</h2>
 
   <InputBlock name="distance">
     <InputNormalizeOnBlur
@@ -127,10 +127,9 @@
     <TimeInput
       name="time"
       bind:value={
-        () => time2seconds, (v) => (time1seconds = deriveTime(v, distance2miles, distance1miles))
+        () => time2seconds, (v) => (time1seconds = deriveTime(distance2miles, distance1miles, v))
       }
       withHours
-      disabled
     />
   </InputBlock>
 
@@ -140,9 +139,8 @@
         name="pace_km"
         bind:value={
           () => pace2km,
-          (v) => (time1seconds = deriveTime(v * distance2km, distance2miles, distance1miles))
+          (v) => (time1seconds = deriveTime(distance2miles, distance1miles, v * distance2km))
         }
-        disabled
         unit={MIN_KM}
       />
     {:else}
@@ -150,9 +148,8 @@
         name="pace_mi"
         bind:value={
           () => pace2miles,
-          (v) => (time1seconds = deriveTime(v * distance2miles, distance2miles, distance1miles))
+          (v) => (time1seconds = deriveTime(distance2miles, distance1miles, v * distance2miles))
         }
-        disabled
         unit={MIN_MI}
       />
     {/if}
@@ -182,7 +179,7 @@
 
   form,
   .footer {
-    padding: 2rem;
+    padding: 1.6rem 2rem;
   }
 
   .footer {
@@ -201,12 +198,13 @@
 
   h2 {
     font-size: 2.5rem;
-    margin-bottom: 1.6rem;
+    margin-bottom: 1.2rem;
     border-bottom: 1px solid #bbb;
   }
 
   .footer {
     font-size: 1.2rem;
+    text-align: right;
   }
 
   .unit-selection {
