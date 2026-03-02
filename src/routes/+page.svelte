@@ -67,7 +67,6 @@ name="pace miles"
 bind:value={
     () => pace1miles,
     (v) => {
-        console.log(v)
         time1seconds = v * distance1miles
     }
 } />
