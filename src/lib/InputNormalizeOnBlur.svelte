@@ -7,6 +7,7 @@
     toString,
     name,
     disabled = false,
+    unit = null,
   } = $props();
 
   let textValue = $state(toString(value))
@@ -18,8 +19,7 @@
 	});
 </script>
 
-<span>
-  <label for={name}>{name}</label>
+<span class="container">
   <input
     id={name}
     bind:value={
@@ -33,22 +33,36 @@
     onblur={() => { isFocused = false }}
     disabled={disabled}
   />
+  {#if unit}
+    <span class="unit">{unit}</span>
+  {/if}
 </span>
 
 <style>
+  .container {
+    position: relative;
+    display: inline-block;
+  }
+
+  .container, input {
+    width: 10rem;
+  }
+
   input {
     border: 1px solid #ccc;
-    padding: 0rem 0.3rem;
-    width: 8rem;
     border-radius: 0.6rem;
+    padding-left: 0.3rem;
   }
 
   input:disabled {
     border-color: #777;
   }
 
-  label {
-    font-weight: bold;
-    padding-right: 0.2rem;
+  .unit {
+    position: absolute;
+    right: 0.4rem;
+    bottom: 0.3rem;
+    color: #777;
+    font-size: 0.8em;
   }
 </style>

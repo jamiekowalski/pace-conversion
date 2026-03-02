@@ -9,6 +9,7 @@
     value = $bindable(),
     withHours = false,
     name,
+    unit = null,
     disabled = false,
   } = $props();
 
@@ -49,4 +50,5 @@
   fromString={parseTime}
   toString={secondsToString}
   disabled={disabled}
+  unit={unit}
 />
