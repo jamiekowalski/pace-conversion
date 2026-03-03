@@ -17,8 +17,12 @@
   function splitSeconds(seconds: number) {
     // seconds to [hours, minutes, seconds]
     let remaining_seconds = Math.round(seconds);
-    const hours = Math.floor(remaining_seconds / HOUR_IN_SECONDS);
-    remaining_seconds = remaining_seconds - hours * HOUR_IN_SECONDS;
+
+    let hours = 0
+    if (withHours) {
+      hours = Math.floor(remaining_seconds / HOUR_IN_SECONDS);
+      remaining_seconds = remaining_seconds - hours * HOUR_IN_SECONDS;
+    }
     const minutes = Math.floor(remaining_seconds / MINUTE_IN_SECONDS);
     remaining_seconds = Math.round(remaining_seconds - minutes * MINUTE_IN_SECONDS);
 
