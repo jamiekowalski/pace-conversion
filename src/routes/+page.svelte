@@ -13,6 +13,10 @@
     return Math.round(distance * 100) / 100;
   }
 
+  function parseDistance(distance: string) {
+    return parseFloat(distance) || 0;
+  }
+
   function deriveTime(input_miles: number, output_miles: number, input_time: number) {
     return input_time * (output_miles / input_miles) ** 1.06;
   }
@@ -58,7 +62,7 @@
       name="miles"
       bind:value={distance1miles}
       toString={formatDistance}
-      fromString={parseFloat}
+      fromString={parseDistance}
       unit="mi"
       width="7rem"
     />
@@ -67,7 +71,7 @@
       name="km"
       bind:value={() => distance1km, (v) => (distance1miles = v / KM_PER_MILE)}
       toString={formatDistance}
-      fromString={parseFloat}
+      fromString={parseDistance}
       unit="km"
       width="7rem"
     />
@@ -112,7 +116,7 @@
       name="mi"
       bind:value={distance2miles}
       toString={formatDistance}
-      fromString={parseFloat}
+      fromString={parseDistance}
       unit="mi"
       width="7rem"
     />
@@ -121,7 +125,7 @@
       name="km"
       bind:value={() => distance2km, (v) => (distance2miles = v / KM_PER_MILE)}
       toString={formatDistance}
-      fromString={parseFloat}
+      fromString={parseDistance}
       unit="km"
       width="7rem"
     />
