@@ -22,6 +22,7 @@
 
 <span class="container" style:width>
   <input
+    inputmode="decimal"
     id={name}
     bind:value={
       () => textValue,

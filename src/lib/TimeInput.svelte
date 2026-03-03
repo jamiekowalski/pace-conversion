@@ -37,7 +37,7 @@
 
   function parseTime(time: string) {
     const expectedLength = withHours ? 3 : 2;
-    let parts_low_to_high = time.split(':').reverse().slice(0, 3);
+    let parts_low_to_high = time.split(/[:.]/).reverse().slice(0, 3);
     if (parts_low_to_high.length < expectedLength) {
       parts_low_to_high = ['0'].concat(parts_low_to_high);
     }
