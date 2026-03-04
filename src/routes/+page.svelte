@@ -4,6 +4,7 @@
   import InputNormalizeOnBlur from '$lib/InputNormalizeOnBlur.svelte';
   import TimeInput from '$lib/TimeInput.svelte';
   import { browser } from '$app/environment';
+    import QuickSelection from '$lib/QuickSelection.svelte';
 
   const KM_PER_MILE = 1.60934;
   const MIN_MI = 'min/mi';
@@ -77,6 +78,8 @@
     />
   </InputBlock>
 
+  <QuickSelection setKm={(v: number) => distance1miles = v / KM_PER_MILE} />
+
   <InputBlock name="time">
     <TimeInput
       name="time"
@@ -131,7 +134,9 @@
     />
   </InputBlock>
 
-  <InputBlock name="time">
+  <QuickSelection setKm={(v: number) => distance2miles = v / KM_PER_MILE} />
+
+    <InputBlock name="time">
     <TimeInput
       name="time"
       bind:value={
