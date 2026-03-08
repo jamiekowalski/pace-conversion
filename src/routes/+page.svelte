@@ -65,7 +65,7 @@
 <form class="race1">
   <h2>Race A</h2>
 
-  <InputBlock name="distance">
+  <InputBlock name="Distance">
     <InputNormalizeOnBlur
       name="miles"
       bind:value={distance1miles}
@@ -87,7 +87,7 @@
 
   <QuickSelection setKm={(v: number) => distance1miles = v / KM_PER_MILE} />
 
-  <InputBlock name="time">
+  <InputBlock name="Time">
     <TimeInput
       name="time"
       bind:value={() => time1seconds, (v) => (time1seconds = v)}
@@ -96,7 +96,7 @@
     />
   </InputBlock>
 
-  <InputBlock name="pace">
+  <InputBlock name="Pace">
     {#if paceUnits == MIN_KM}
       <TimeInput
         name="pace_km"
@@ -125,7 +125,7 @@
 <form class="race2">
   <h2>Race B</h2>
 
-  <InputBlock name="distance">
+  <InputBlock name="Distance">
     <InputNormalizeOnBlur
       name="mi"
       bind:value={distance2miles}
@@ -147,7 +147,7 @@
 
   <QuickSelection setKm={(v: number) => distance2miles = v / KM_PER_MILE} />
 
-    <InputBlock name="time">
+    <InputBlock name="Time">
     <TimeInput
       name="time"
       bind:value={
@@ -158,7 +158,7 @@
     />
   </InputBlock>
 
-  <InputBlock name="pace">
+  <InputBlock name="Pace">
     {#if paceUnits == MIN_KM}
       <TimeInput
         name="pace_km"
