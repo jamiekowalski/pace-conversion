@@ -154,6 +154,7 @@
         () => time2seconds, (v) => (time1seconds = deriveTime(distance2miles, distance1miles, v))
       }
       withHours
+      disabled
     />
   </InputBlock>
 
@@ -166,6 +167,7 @@
           (v) => (time1seconds = deriveTime(distance2miles, distance1miles, v * distance2km))
         }
         unit={MIN_KM}
+        disabled
       />
     {:else}
       <TimeInput
@@ -175,6 +177,7 @@
           (v) => (time1seconds = deriveTime(distance2miles, distance1miles, v * distance2miles))
         }
         unit={MIN_MI}
+        disabled
       />
     {/if}
   </InputBlock>

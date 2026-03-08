@@ -59,7 +59,7 @@
   }
 
   input:disabled {
-    border-color: #777;
+    border-color: #484848;
   }
 
   .unit {
