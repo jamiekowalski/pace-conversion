@@ -53,6 +53,13 @@
   $effect(() => {
     localStorage.setItem('paceUnits', paceUnits);
   });
+
+  function swap() {
+    time1seconds = deriveTime(distance1miles, distance2miles, time1seconds)
+    const distance1milesCopy = distance1miles
+    distance1miles = distance2miles
+    distance2miles = distance1milesCopy
+  }
 </script>
 
 <form class="race1">
@@ -109,6 +116,10 @@
       />
     {/if}
   </InputBlock>
+
+  <div class="swap" onclick={swap}>
+    ↑↓
+  </div>
 </form>
 
 <form class="race2">
@@ -192,7 +203,8 @@
 
   form,
   .footer {
-    padding: 1.6rem 2rem;
+    padding: 1.6rem 2rem 2.6rem;
+    position: relative;
   }
 
   .footer {
@@ -213,6 +225,19 @@
     font-size: 2.5rem;
     margin-bottom: 1.2rem;
     border-bottom: 1px solid #bbb;
+  }
+
+  .swap {
+    position: absolute;
+    left: calc(50% - 1.555rem);
+    bottom: -1.5rem;
+    z-index: 1;
+    border: 1px solid #bbb;
+    background-color: #f3f3f3;
+    border-radius: 0.5rem;
+    padding: 0.3rem;
+    letter-spacing: -0.1rem;
+    cursor: pointer;
   }
 
   .footer {
